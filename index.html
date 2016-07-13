@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Front Rush Wawa Tracker</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel='shortcut icon' href='favicon.ico' type='image/x-icon'/ >
+		<link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+		<!-- Facebook -->
+		<!-- <meta property="og:url" content="http://francescofraioli.it/pizza"> -->
+		<meta property="og:url" content="http://williamlynch.me/wawa">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Wawa Tracker">
+		<!-- <meta property="og:image" content="http://www.francescofraioli.it/pizza/images/fb-pic.png"> -->
+		<meta property="og:image" content="http://williamlynch.me/wawa/images/fb-pic.png">
+		<meta property="og:description" content="Data visualization project about Wawa eating habits">
+		<meta property="og:site_name" content="William Lynch">
+		<meta property="og:locale" content="en_US">
+		<meta property="article:author" content="William Lynch">
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:site" content="@_billynch">
+		<meta name="twitter:creator" content="@_billynch">
+		<meta name="twitter:title" content="A Year of Pizza">
+		<meta name="twitter:description" content="Data visualization project about Wawa eating habits">
+		<meta name="twitter:image" content="http://williamlynch.me/wawa/images/tw-pic.png">
+	</head>
+	<body>
+		<div class="container">
+			<section class="hero header">
+				<div class="titolo description">
+					<h1 class="light">Wawa Tracker</h1>
+					<div id="spiega"><p>Data visualization project about the Wawa eating habits at Front Rush. Because Wawa is our favorite place. And because... <br><br> Wawa > Sheetz.<br><br>This web page pulls information from a <a href="https://docs.google.com/spreadsheets/d/10sSAFryz8eydwkEfS4iAaW8KkilyvFnZiBYmjWCVqhI/edit?usp=sharing" target="_blank">spreadsheet</a> that I'm using to track Wawa purchases. I'm using D3.js to generate the charts.</p>
+					<hr>
+						<div class='orders'>
+							<h5>Total number of Wawa orders so far</h5>
+							<h4 class="bigAndLight totWawa"></h4>
+						</div>
+						</div>
+				</div>
+				<div class="compo logo">
+					<!-- <img src="images/compo-pizza.png"> -->
+					<img src="images/wawa.png">
+				</div>
+			</section>
+
+
+			<section class="timeline">
+			<h5>Timeline</h5>
+			<svg id="timeline" class="chart"></svg>
+						
+			<div class="row">
+				<div class="col ten type">
+					<h5>Type</h5>
+					<svg id="type" class="chart"></svg>
+				</div>
+				<div class="col three howAndWhen">
+					<h5>Food or Bev (How)</h5>
+					<div id="how" class="chart"></div>
+					<h5>When</h5>
+					<div id="when" class="chart"></div>
+					<h5>Where</h5>
+					<div id="place" class="chart"></div>
+				</div>
+			</div>
+			</section>
+
+			<section class="ingredients">
+				<h3>Order History</h3>
+				<!-- <div class="row mainIngredients">
+					<div class="col four">
+						<img src="images/flour.png">
+						<div>
+							<h5>Flour</h5>
+							<h4 id="flour" class="bigAndLight"></h4>
+							<p>200g x 1 pizza</p>
+						</div>
+					</div>
+					<div class="col four">
+						<img src="images/yeast.png">
+						<div>
+							<h5>Yeast</h5>
+							<h4 id="yeast" class="bigAndLight"></h4>
+							<p>1.75g x 1 pizza</p>
+						</div>
+					</div>
+					<div class="col four">
+						<img src="images/oil.png">
+						<div>
+							<h5>Oil</h5>
+							<h4 id="oil" class="bigAndLight"></h4>
+							<p>15ml x 1 pizza</p>
+						</div>
+					</div>
+					<div class="col four">
+						<img src="images/water.png">
+						<div>
+							<h5>Water</h5>
+							<h4 id="water" class="bigAndLight"></h4>
+							<p>150ml x 1 pizza</p>
+						</div>
+					</div>
+				</div> -->
+				<div class="row">
+					<div class="col">
+						<h5>Topping List</h5>
+						<svg id="topping" class="chart"></svg>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<h5>Orders</h5>
+						<div id="comp" class="chart"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="location" style="border-bottom: 1px solid #DDCEA0;">
+				<h3 style="margin-bottom: 3px">Locations</h3>
+				<svg id="location" class="chart">
+					<defs>
+				    <pattern id="sea-pattern" x="0" y="0" patternUnits="userSpaceOnUse" height="24" width="35">
+				      <image x="0" height="24" width="35" y="0" xlink:href="images/sea.png"></image>
+				    </pattern>
+				  </defs>
+				</svg>
+			</section>
+			
+			<footer>
+				<p><small>Made in Philadelphia by <a href="/">Bill Lynch</a> - Original Recipe on <a href="https://github.com/pinakes/pizza" target="_blank">github</a></small></p>
+			</footer>
+		</div>
+
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+		<script src="http://d3js.org/topojson.v0.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<script type="text/javascript" src="js/fullgraph.js"></script>
+		<script type="text/javascript" src="js/world.js"></script>
+		<script type="text/javascript" src="js/fr.js"></script>
+		<!-- // <script type="text/javascript" src="js/quantity.js"></script> -->
+		<script type="text/javascript" src="js/ingredients.js"></script>
+		<script type="text/javascript" src="js/pies.js"></script>
+		<script src="https://spreadsheets.google.com/feeds/list/19KpsOchagHdme4G0U0uCCLvm5aTtGd1Pbp0GVt2i5aw/2/public/values?alt=json-in-script&callback=sheetLoaded"></script>
+		<!-- <script src="https://spreadsheets.google.com/feeds/list/10sSAFryz8eydwkEfS4iAaW8KkilyvFnZiBYmjWCVqhI/od6/public/values?alt=json-in-script&callback=sheetLoaded"></script> -->
+	    <script>
+	      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	      ga('create', 'UA-65259550-1', 'auto');
+	      ga('send', 'pageview');
+
+	    </script>
+	</body>
+</html>
